@@ -9,11 +9,13 @@
       src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.js"
       defer
     ></script>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
   </head>
   <body>
     <div
       x-data="{select:null,selectList:['Python','JavaScript','PHP','Go'],question:'廣澤先生が来週から始める専科の講座の名前は？',answer:'JavaScript'}"
-    >
+      class="p-4 w-1/4 mx-auto "
+      >
       <p x-text="question"></p>
       <ul>
         <template x-for="item in selectList">
