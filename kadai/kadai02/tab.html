@@ -22,6 +22,7 @@
   <body>
     <div
       x-data="{ activeTab: 'にんじん', tabs: ['にんじん','だいこん','なす','ごぼう']}"
+      class="p-8"
     >
       <div class="border-b border-red-500">
         <template x-for="tab in tabs">
@@ -29,10 +30,11 @@
             x-text="tab"
             @click="activeTab = tab"
             :class="{ 'bg-red-500': activeTab === tab}"
-            class="mx-2 p-2 bg-gray-100"
+            class="focus:outline-none font-bold rounded-t-lg mx-1 p-2 bg-gray-100"
           ></button>
         </template>
       </div>
+      <div class="border-2 border-red-500 rounded"></div>
     </div>
   </body>
 </html>
