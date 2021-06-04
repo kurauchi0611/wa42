@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>アンケート</title>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.js"
+      defer
+    ></script>
+    <link
+      href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.4.3/firebase-firestore.js"></script>
+  </head>
+
+  <body>
+    <div
+      x-data="survey()"
+      x-init="init()"
+      class="p-6 max-w-sm my-6 mx-auto bg-yellow-100 rounded-md shadow-2xl"
+    >
+      <p class="text-lg font-bold text-gray-700 my-4">
+        結婚したら悲しむ有名人は？
+      </p>
+      <ul>
+        <li
+          class="
+            my-4
+            py-2
+            px-4
+            rounded
+            text-sm text-white
+            bg-green-400
+            hover:bg-green-600
+            flex
+            items-center
+          "
+        >
+          <img
+            class="w-12 h-12 rounded-full object-cover mr-2"
+            src="./riho.jpg"
+            alt="吉岡里帆"
+          />
+          <span class="text-sm text-white">吉岡里帆</span>
+        </li>
+        <li
+          @click="post()"
+          class="
+            my-4
+            py-2
+            px-4
+            rounded
+            text-sm text-white
+            bg-green-400
+            hover:bg-green-600
+            flex
+            items-center
+          "
+        >
+          <img
+            class="w-12 h-12 rounded-full object-cover mr-2"
+            src="./ayami.jpg"
+            alt="中条あやみ"
+          />
+          <span class="text-sm text-white">中条あやみ</span>
+        </li>
+        <li
+          class="
+            my-4
+            py-2
+            px-4
+            rounded
+            text-sm text-white
+            bg-green-400
+            hover:bg-green-600
+            flex
+            items-center
+          "
+        >
+          <img
+            class="w-12 h-12 rounded-full object-cover mr-2"
+            src="./minami.jpg"
+            alt="浜辺美波"
+          />
+          <span class="text-sm text-white">浜辺美波</span>
+        </li>
+        <li
+          class="
+            my-4
+            py-2
+            px-4
+            rounded
+            text-sm text-white
+            bg-green-400
+            hover:bg-green-600
+            flex
+            items-center
+          "
+        >
+          <img
+            class="w-12 h-12 rounded-full object-cover mr-2"
+            src="./tsubasa.jpg"
+            alt="本田翼"
+          />
+          <span class="text-sm text-white">本田翼</span>
+        </li>
+      </ul>
+    </div>
+    <script>
+      function survey() {
+        return {
+          init() {
+            firebase.initializeApp({
+              apiKey: "AIzaSyAfS8faWi9A1_bNwBU11oqDXmG1GZ4ruVE",
+              authDomain: "wa42hoshinogen.firebaseapp.com",
+              projectId: "wa42hoshinogen",
+              storageBucket: "wa42hoshinogen.appspot.com",
+              messagingSenderId: "696191923474",
+              appId: "1:696191923474:web:12405aafac0680e2942fcb",
+            });
+            const vm = this;
+            firebase.auth().onAuthStateChanged((user) => {
+              if (user) {
+                console.log(user);
+                vm.uid = user.uid;
+              } else {
+                vm.uid = "";
+              }
+            });
+            firebase.auth().signInAnonymously();
+          },
+          post() {
+            const db = firebase.firestore();
+            db.collection("survey/61qPxGnbP2iYZFrJgFHy/result").add({
+              answer: "中条あやみ",
+              userId: this.uid,
+            });
+          },
+        };
+      }
+    </script>
+  </body>
+</html>
