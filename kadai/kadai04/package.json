@@ -1,0 +1,16 @@
+{
+  "name": "kadai04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^10.0.0",
+    "puppeteer-extra-plugin-stealth": "^2.7.8",
+    "puppeteer-extra-plugin-user-data-dir": "^2.2.12"
+  }
+}
